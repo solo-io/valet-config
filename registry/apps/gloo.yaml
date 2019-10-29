@@ -2,6 +2,7 @@
 
 name: gloo-enterprise
 version: 0.20.4
+namespace: gloo-system
 values:
   Domain: valet-testing-glooui.corp.solo.io
   UpstreamName: gloo-system-apiserver-ui-8080

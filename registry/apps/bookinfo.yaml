@@ -23,7 +23,6 @@ resources:
   - template:
       path: registry/templates/cert.yaml
   - dnsEntry:
-      subdomain: valet-testing-bookinfo
       hostedZone: corp.solo.io.
       service:
         namespace: gloo-system

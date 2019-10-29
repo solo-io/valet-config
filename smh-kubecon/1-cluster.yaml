@@ -1,5 +1,0 @@
-cluster:
-  gke:
-    name: valet-testing
-    location: us-central1-a
-    project: solo-test-236622

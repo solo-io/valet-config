@@ -1,0 +1,12 @@
+cluster:
+  gke:
+    name: valet-testing
+    location: us-central1-a
+    project: solo-test-236622
+applications:
+  - path: registry/apps/cert-manager.yaml
+  - path: registry/apps/gloo.yaml
+  - path: registry/apps/smh.yaml
+  - path: registry/apps/istio.yaml
+  - path: registry/apps/smi.yaml
+  - path: registry/apps/bookinfo.yaml

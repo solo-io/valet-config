@@ -3,7 +3,7 @@ namespace: sm-marketplace
 version: 0.3.19
 values:
   Domain: valet-testing-smh.corp.solo.io
-  Name: smh
+  VirtualServiceName: smh
   Namespace: sm-marketplace
   UpstreamName: sm-marketplace-smm-apiserver-8080
   UpstreamNamespace: gloo-system
@@ -20,11 +20,10 @@ resources:
       set:
         - "namespace.create=true"
   - template:
-      path: common/templates/cert.yaml
+      path: registry/templates/cert.yaml
   - template:
-      path: common/templates/virtual_service_ssl.yaml
+      path: registry/templates/virtual-service-ssl.yaml
   - dnsEntry:
-      subdomain: valet-testing-smh
       hostedZone: corp.solo.io.
       service:
         namespace: gloo-system

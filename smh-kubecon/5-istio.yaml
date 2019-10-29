@@ -1,6 +1,6 @@
 name: istio
 resources:
-  - path: common/app-state/istio.yaml
+  - path: registry/files/istio-appstate.yaml
   - condition:
       type: ApplicationState
       name: istio-demo

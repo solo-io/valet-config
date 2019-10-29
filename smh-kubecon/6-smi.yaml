@@ -1,6 +1,6 @@
 name: smi-adapter-istio
 resources:
-  - path: common/app-state/smi.yaml
+  - path: registry/files/smi-appstate.yaml
   - condition:
       type: ApplicationState
       name: smi-demo

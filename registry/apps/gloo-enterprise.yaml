@@ -1,0 +1,18 @@
+name: gloo-enterprise
+requiredValues:
+  - Version
+values:
+  Namespace: gloo-system
+resources:
+  - helmChart:
+      repoUrl: "https://storage.googleapis.com/gloo-ee-helm/"
+      chartName: gloo-ee
+      repoName: gloo-ee
+      set:
+        - "gloo.namespace.create=true"
+        # NOTE: currently, grafana / prometheus are disabled because reapplying causes an error
+        - "prometheus.enabled=false"
+        - "grafana.defaultInstallationEnabled=false"
+        - "gloo.gatewayProxies.gatewayProxyV2.readConfig=true"
+      setEnv:
+        license_key: LICENSE_KEY

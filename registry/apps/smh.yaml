@@ -1,12 +1,8 @@
 name: service-mesh-hub
-namespace: sm-marketplace
-version: 0.3.19
+requiredValues:
+  - Version
 values:
-  Domain: valet-testing-smh.corp.solo.io
-  VirtualServiceName: smh
   Namespace: sm-marketplace
-  UpstreamName: sm-marketplace-smm-apiserver-8080
-  UpstreamNamespace: gloo-system
 resources:
   - secret:
       name: github-token
@@ -19,12 +15,3 @@ resources:
       repoName: sm-marketplace
       set:
         - "namespace.create=true"
-  - template:
-      path: registry/templates/cert.yaml
-  - template:
-      path: registry/templates/virtual-service-ssl.yaml
-  - dnsEntry:
-      hostedZone: corp.solo.io.
-      service:
-        namespace: gloo-system
-        name: gateway-proxy-v2

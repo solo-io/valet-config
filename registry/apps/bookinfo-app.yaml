@@ -1,0 +1,25 @@
+name: bookinfo-app
+requiredValues:
+  - Domain
+values:
+  VirtualServiceName: bookinfo
+  Namespace: bookinfo
+  UpstreamName: bookinfo-productpage-9080
+  UpstreamNamespace: gloo-system
+resources:
+  - application:
+      - path: registry/apps/bookinfo.yaml
+  - application:
+      - path: registry/apps/gloo-app.yaml
+  - patch:
+      path: registry/patches/bookinfo-upstream-ssl.yaml
+      kubeType: upstream
+      name: bookinfo-productpage-9080
+      namespace: gloo-system
+      patchType: merge
+  - patch:
+      path: registry/patches/gateway-proxy-deployment-ssl.yaml
+      kubeType: deployment
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic

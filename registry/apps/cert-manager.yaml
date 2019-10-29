@@ -1,5 +1,4 @@
 name: cert-manager
-version: 0.10.0
 resources:
   - path: https://github.com/jetstack/cert-manager/releases/download/v0.10.0/cert-manager-no-webhook.yaml
   - secret:

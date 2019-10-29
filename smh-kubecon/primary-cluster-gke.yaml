@@ -5,8 +5,16 @@ cluster:
     project: solo-test-236622
 applications:
   - path: registry/apps/cert-manager.yaml
-  - path: registry/apps/gloo.yaml
-  - path: registry/apps/smh.yaml
+  - path: registry/apps/gloo-enterprise-app.yaml
+    values:
+      Domain: valet-testing-glooui.corp.solo.io
+      Version: 0.20.4
+  - path: registry/apps/smh-app.yaml
+      values:
+        Domain: valet-testing-smh.corp.solo.io
+        Version: 0.3.19
   - path: registry/apps/istio.yaml
   - path: registry/apps/smi.yaml
-  - path: registry/apps/bookinfo.yaml
+  - path: registry/apps/bookinfo-app.yaml
+      values:
+        Domain: valet-testing-bookinfo.corp.solo.io

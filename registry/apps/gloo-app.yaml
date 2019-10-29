@@ -1,0 +1,17 @@
+name: gloo-app
+requiredValues:
+  - Domain
+  - Namespace
+  - VirtualServiceName
+  - UpstreamName
+  - UpstreamNamespace
+resources:
+  - template:
+      path: registry/templates/cert.yaml
+  - dnsEntry:
+      hostedZone: corp.solo.io.
+      service:
+        namespace: gloo-system
+        name: gateway-proxy-v2
+  - template:
+      path: registry/templates/virtual-service-ssl.yaml

@@ -1,0 +1,99 @@
+apiVersion: marketplace.solo.io/v1
+kind: ApplicationState
+metadata:
+  name: istio-demo
+  namespace: sm-marketplace
+spec:
+  applicationHealth: {}
+  applicationName: istio
+  applicationSpec:
+    flavors:
+      - customizationLayers:
+          - displayName: Gateway
+            id: gateway
+            options:
+              - description: Enable gateways
+                displayName: Enabled
+                helmValues: |
+                  gateways:
+                    enabled: true
+                id: enabled
+              - description: Do not enable gateways
+                displayName: Disabled
+                helmValues: |
+                  gateways:
+                    enabled: false
+                id: disabled
+          - displayName: Security
+            id: security
+            optional: true
+            options:
+              - description: Enable mtls and use self-signed certs
+                displayName: Strict
+                helmValues: |
+                  global:
+                    controlPlaneSecurityEnabled: true
+                    mtls:
+                      enabled: true
+                id: strict
+              - description: Enable mtls and provide a cert
+                displayName: Strict (Provided Cert)
+                helmValues: |
+                  global:
+                    controlPlaneSecurityEnabled: true
+                    mtls:
+                      enabled: true
+                      security:
+                        selfSigned: false
+                id: strict-custom-cert
+                parameters:
+                  - default:
+                      secretValue:
+                        secretRef:
+                          key: secret
+                          ref:
+                            name: name
+                            namespace: namespace
+                    description: Provide your own root certificate
+                    displayName: Root Certificate
+                    name: cert.not.implemented
+                    required: true
+                    type: SECRET
+                resourceDependencies:
+                  - secretDependency:
+                      keys:
+                        - ca-cert.pem
+                        - ca-key.pem
+                        - root-cert.pem
+                        - cert-chain.pem
+                      name: cacerts
+        description: Install istio control plane to a namespace with a bunch of options
+        name: banana
+      - description: Install istio control plane to a namespace
+        name: vanilla
+    installationSteps:
+      steps:
+        - githubChart:
+            directory: install/kubernetes/helm/istio-init
+            org: istio
+            ref: 1.3.3
+            repo: istio
+          name: istio-init
+        - githubChart:
+            directory: install/kubernetes/helm/istio
+            org: istio
+            ref: 1.3.3
+            repo: istio
+          name: istio
+    version: "1.3"
+  displayName: istio
+  installationState:
+    flavorName: banana
+    installNamespace: istio-system
+    layerOptions:
+      gateway:
+        layerOptionId: disabled
+      security:
+        layerOptionId: strict
+    version: "1.3"
+  registryName: hub-meshes

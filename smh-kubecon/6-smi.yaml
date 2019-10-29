@@ -1,0 +1,10 @@
+name: smi-adapter-istio
+resources:
+  - path: common/app-state/smi.yaml
+  - condition:
+      type: ApplicationState
+      name: smi-demo
+      namespace: sm-marketplace
+      jsonpath: '{.spec.installationState.status}'
+      value: INSTALLED
+      timeout: 120s

@@ -1,0 +1,42 @@
+name: bookinfo
+values:
+  Domain: valet-testing-bookinfo.corp.solo.io
+  Name: bookinfo
+  Namespace: bookinfo
+  UpstreamName: bookinfo-productpage-9080
+  UpstreamNamespace: gloo-system
+resources:
+  - namespace:
+      name: bookinfo
+      labels:
+        istio-injection: enabled
+  - path: common/app-state/bookinfo.yaml
+  - condition:
+      type: ApplicationState
+      name: bookinfo-demo
+      namespace: sm-marketplace
+      jsonpath: '{.spec.installationState.status}'
+      value: INSTALLED
+      timeout: 120s
+  - template:
+      path: common/templates/virtual_service_ssl.yaml
+  - template:
+      path: common/templates/cert.yaml
+  - dnsEntry:
+      subdomain: valet-testing-bookinfo
+      hostedZone: corp.solo.io.
+      service:
+        namespace: gloo-system
+        name: gateway-proxy-v2
+  - patch:
+      path: common/patches/bookinfo-ssl-patch.yaml
+      kubeType: upstream
+      name: bookinfo-productpage-9080
+      namespace: gloo-system
+      patchType: merge
+  - patch:
+      path: common/patches/gateway-proxy-ssl-patch.yaml
+      kubeType: deployment
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic

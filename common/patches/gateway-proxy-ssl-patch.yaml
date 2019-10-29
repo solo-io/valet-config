@@ -1,0 +1,15 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: gateway-proxy-v2
+          volumeMounts:
+            - mountPath: /etc/certs/
+              name: istio-certs
+              readOnly: true
+      volumes:
+        - name: istio-certs
+          secret:
+            defaultMode: 420
+            optional: true
+            secretName: istio.default

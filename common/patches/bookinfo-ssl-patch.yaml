@@ -1,0 +1,7 @@
+spec:
+  upstreamSpec:
+    sslConfig:
+      sslFiles:
+        rootCa: /etc/certs/root-cert.pem
+        tlsCert: /etc/certs/cert-chain.pem
+        tlsKey: /etc/certs/key.pem

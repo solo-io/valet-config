@@ -1,0 +1,16 @@
+name: cert-manager
+version: 0.10.0
+resources:
+  - path: https://github.com/jetstack/cert-manager/releases/download/v0.10.0/cert-manager-no-webhook.yaml
+  - secret:
+      name: cert-manager
+      namespace: cert-manager
+      entries:
+        access_key_id:
+          envVar: AWS_ACCESS_KEY_ID
+        secret_access_key:
+          envVar: AWS_SECRET_ACCESS_KEY
+  - template:
+      path: common/templates/cluster_issuer.yaml
+      envValues:
+        AccessKeyId: AWS_ACCESS_KEY_ID

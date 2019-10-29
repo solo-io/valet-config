@@ -1,0 +1,28 @@
+apiVersion: marketplace.solo.io/v1
+kind: ApplicationState
+metadata:
+  name: smi-demo
+  namespace: sm-marketplace
+spec:
+  applicationName: smi
+  applicationSpec:
+    flavors:
+      - description: Install smi to your istio mesh
+        name: istio
+        requirementSets:
+          - meshRequirement:
+              versions:
+                maxVersion: "1.4"
+                minVersion: 1.0.2
+    manifestsArchive:
+      uri: https://storage.googleapis.com/sm-marketplace-registry/smi.tar.gz
+    version: 0.0.1
+  displayName: smi
+  installationState:
+    flavorName: istio
+    installNamespace: istio-system
+    mesh:
+      name: istio-istio-system
+      namespace: sm-marketplace
+    version: 0.0.1
+  registryName: hub-extensions

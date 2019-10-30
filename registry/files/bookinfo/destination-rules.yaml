@@ -1,6 +1,4 @@
-# After applying this, productpage should load
-
-
+# This shouldn't be necessary for SMI demo
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:

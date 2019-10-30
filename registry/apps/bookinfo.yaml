@@ -4,7 +4,7 @@ resources:
       name: bookinfo
       labels:
         istio-injection: enabled
-  - path: registry/files/bookinfo-appstate.yaml
+  - path: registry/files/bookinfo/appstate.yaml
   - condition:
       type: ApplicationState
       name: bookinfo-demo

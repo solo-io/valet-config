@@ -1,3 +1,6 @@
+# This is a wrapper for the resources (virtual services, certificate, and dns entry) that are necessary to
+# configure a simple application in Gloo
+
 name: gloo-app
 requiredValues:
   - Domain

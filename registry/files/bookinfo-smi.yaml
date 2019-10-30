@@ -1,0 +1,29 @@
+---
+apiVersion: specs.smi-spec.io/v1alpha1
+kind: HTTPRouteGroup
+metadata:
+  name: bookinfo-allowed-paths
+  namespace: bookinfo
+matches:
+- name: api
+  pathRegex: ""
+  methods: ["*"]
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: productpage-v1-details-v1
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: details-v1
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: productpage-v1
+    namespace: bookinfo

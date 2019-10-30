@@ -8,17 +8,19 @@ values:
   UpstreamNamespace: gloo-system
 resources:
   - application:
-      - path: registry/apps/bookinfo.yaml
+      path: registry/apps/bookinfo.yaml
   - application:
-      - path: registry/apps/gloo-app.yaml
+      path: registry/files/bookinfo-raw.yaml # this fixes the service accounts: https://github.com/solo-io/sm-marketplace/issues/828
+  - application:
+      path: registry/apps/gloo-app.yaml
   - patch:
-      path: registry/patches/bookinfo-upstream-ssl.yaml
+      path: registry/patches/istio/bookinfo-upstream-ssl.yaml
       kubeType: upstream
       name: bookinfo-productpage-9080
       namespace: gloo-system
       patchType: merge
   - patch:
-      path: registry/patches/gateway-proxy-deployment-ssl.yaml
+      path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
       kubeType: deployment
       name: gateway-proxy-v2
       namespace: gloo-system

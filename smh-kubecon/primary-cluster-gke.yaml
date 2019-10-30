@@ -10,11 +10,11 @@ applications:
       Domain: valet-testing-glooui.corp.solo.io
       Version: 0.20.4
   - path: registry/apps/smh-app.yaml
-      values:
-        Domain: valet-testing-smh.corp.solo.io
-        Version: 0.3.19
+    values:
+      Domain: valet-testing-smh.corp.solo.io
+      Version: 0.3.19
   - path: registry/apps/istio.yaml
-  - path: registry/apps/smi.yaml
+  - path: registry/apps/smi-adapter-istio.yaml
   - path: registry/apps/bookinfo-app.yaml
-      values:
-        Domain: valet-testing-bookinfo.corp.solo.io
+    values:
+      Domain: valet-testing-bookinfo.corp.solo.io

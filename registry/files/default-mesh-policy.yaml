@@ -1,0 +1,9 @@
+apiVersion: authentication.istio.io/v1alpha1
+kind: MeshPolicy
+metadata:
+  labels:
+    created_by: istio-config-syncer
+  name: default
+spec:
+  peers:
+  - mtls: {}

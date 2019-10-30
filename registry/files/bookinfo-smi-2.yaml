@@ -1,0 +1,98 @@
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: productpage-reviews-v2
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: reviews-v2
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: productpage-v1
+    namespace: bookinfo
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: productpage-reviews-v1
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: reviews-v1
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: productpage-v1
+    namespace: bookinfo
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: productpage-reviews-v3
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: reviews-v3
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: productpage-v1
+    namespace: bookinfo
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: productpage-details-v3
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: details-v1
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: productpage-v1
+    namespace: bookinfo
+---
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha1
+metadata:
+  name: reviews-ratings
+  namespace: bookinfo
+destination:
+  kind: ServiceAccount
+  name: ratings-v1
+  namespace: bookinfo
+specs:
+  - kind: HTTPRouteGroup
+    name: bookinfo-allowed-paths
+    matches:
+      - api
+sources:
+  - kind: ServiceAccount
+    name: reviews-v2
+    namespace: bookinfo
+  - kind: ServiceAccount
+    name: reviews-v3
+    namespace: bookinfo

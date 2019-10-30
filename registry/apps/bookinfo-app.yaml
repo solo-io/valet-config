@@ -9,8 +9,7 @@ values:
 resources:
   - application:
       path: registry/apps/bookinfo.yaml
-  - application:
-      path: registry/files/bookinfo-raw.yaml # this fixes the service accounts: https://github.com/solo-io/sm-marketplace/issues/828
+  - path: registry/files/bookinfo-raw.yaml # this fixes the service accounts: https://github.com/solo-io/sm-marketplace/issues/828
   - application:
       path: registry/apps/gloo-app.yaml
   - patch:

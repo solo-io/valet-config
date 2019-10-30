@@ -1,0 +1,14 @@
+cluster:
+  gke:
+    name: glooe-demo-idit
+    location: us-central1-a
+    project: solo-test-236622
+applications:
+  - path: registry/apps/cert-manager.yaml
+  - path: registry/apps/gloo-enterprise-app.yaml
+    values:
+      Domain: valet-glooui-37b2b8609d.corp.solo.io
+      Version: 0.20.4
+  - path: registry/apps/petclinic-app.yaml
+    values:
+      Domain: valet-petclinic-37b2b8609d.corp.solo.io

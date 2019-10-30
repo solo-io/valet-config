@@ -1,0 +1,7 @@
+cluster:
+  minikube: {}
+applications:
+  - path: registry/apps/gloo-enterprise.yaml
+    values:
+      Version: 0.20.4
+  - path: registry/apps/petclinic.yaml

@@ -1,7 +1,7 @@
 # This is a wrapper for the resources (virtual services, certificate, and dns entry) that are necessary to
 # configure a simple application in Gloo
 
-name: gloo-app
+name: gloo-ssl-app
 requiredValues:
   - Domain
   - Namespace
@@ -9,6 +9,8 @@ requiredValues:
   - UpstreamName
   - UpstreamNamespace
 resources:
+  - template:
+      path: registry/templates/cert.yaml
   - dnsEntry:
       hostedZone: corp.solo.io.
       service:
@@ -16,3 +18,5 @@ resources:
         name: gateway-proxy-v2
   - template:
       path: registry/templates/virtual-service.yaml
+  - template:
+      path: registry/templates/virtual-service-ssl.yaml

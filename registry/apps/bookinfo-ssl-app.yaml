@@ -1,4 +1,4 @@
-name: bookinfo-app
+name: bookinfo-ssl-app
 requiredValues:
   - Domain
 values:
@@ -7,10 +7,10 @@ values:
   UpstreamName: bookinfo-productpage-9080
   UpstreamNamespace: gloo-system
 resources:
-#  - application:
-#      path: registry/apps/bookinfo.yaml
   - application:
-      path: registry/apps/gloo-app.yaml
+      path: registry/apps/bookinfo.yaml
+  - application:
+      path: registry/apps/gloo-ssl-app.yaml
   - patch:
       path: registry/patches/istio/bookinfo-upstream-ssl.yaml
       kubeType: upstream

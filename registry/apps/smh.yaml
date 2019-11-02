@@ -4,6 +4,8 @@ requiredValues:
 values:
   Namespace: sm-marketplace
 resources:
+  - namespace:
+      name: sm-marketplace
   - secret:
       name: github-token
       entries:

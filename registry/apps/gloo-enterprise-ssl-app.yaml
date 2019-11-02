@@ -11,4 +11,4 @@ resources:
   - application:
       path: registry/apps/gloo-enterprise.yaml
   - application:
-      path: registry/apps/gloo-app.yaml
+      path: registry/apps/gloo-ssl-app.yaml

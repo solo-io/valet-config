@@ -1,0 +1,17 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: {{ .VirtualServiceName }}
+  namespace: {{ .Namespace }}
+spec:
+  virtualHost:
+    domains:
+      - {{ .Domain }}
+    routes:
+      - matcher:
+          prefix: /
+        routeAction:
+          single:
+            upstream:
+              name: {{ .UpstreamName }}
+              namespace: {{ .UpstreamNamespace }}

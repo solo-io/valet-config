@@ -12,11 +12,11 @@ matches:
 kind: TrafficTarget
 apiVersion: access.smi-spec.io/v1alpha1
 metadata:
-  name: productpage-v1-details-v1
+  name: productpage-details
   namespace: bookinfo
 destination:
   kind: ServiceAccount
-  name: details-v1
+  name: bookinfo-details
   namespace: bookinfo
 specs:
   - kind: HTTPRouteGroup
@@ -25,5 +25,5 @@ specs:
       - api
 sources:
   - kind: ServiceAccount
-    name: productpage-v1
+    name: bookinfo-productpage
     namespace: bookinfo

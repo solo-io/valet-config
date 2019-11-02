@@ -10,8 +10,8 @@ spec:
       - description: Install bookinfo
         name: default
     manifestsArchive:
-      uri: https://storage.googleapis.com/sm-marketplace-registry/bookinfo.tar.gz
-    version: 1.13.0
+      uri: https://storage.googleapis.com/sm-marketplace-registry/bookinfo-1.15.0.tar.gz
+    version: 1.15.0
   displayName: bookinfo
   installationState:
     flavorName: default
@@ -19,5 +19,5 @@ spec:
     mesh:
       name: istio-istio-system
       namespace: sm-marketplace
-    version: 1.13.0
+    version: 1.15.0
   registryName: hub-demos

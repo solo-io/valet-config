@@ -1,0 +1,7 @@
+requiredValues:
+  - Domain
+steps:
+  - workflow:
+      path: registry/workflows/deploy-bookinfo.yaml
+  - install:
+      path: registry/apps/bookinfo-app.yaml

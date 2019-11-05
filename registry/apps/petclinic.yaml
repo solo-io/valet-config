@@ -8,7 +8,7 @@ resources:
           envVar: AWS_ACCESS_KEY_ID
         aws_secret_access_key:
           envVar: AWS_SECRET_ACCESS_KEY
-  - path: registry/files/aws-upstream.yaml
+  - path: registry/files/gloo/aws-upstream.yaml
   - path: https://raw.githubusercontent.com/sololabs/demos/b523571c66057a5591bce22ad896729f1fee662b/petclinic_demo/petclinic.yaml
   - path: https://raw.githubusercontent.com/sololabs/demos/b523571c66057a5591bce22ad896729f1fee662b/petclinic_demo/petclinic-vets.yaml
   - path: https://raw.githubusercontent.com/sololabs/demos/b523571c66057a5591bce22ad896729f1fee662b/petclinic_demo/petclinic-db.yaml

@@ -11,5 +11,5 @@ resources:
           envVar: AWS_SECRET_ACCESS_KEY
   - template:
       path: registry/templates/cluster-issuer.yaml
-      envValues:
-        AccessKeyId: AWS_ACCESS_KEY_ID
+      values:
+        AccessKeyId: "env:AWS_ACCESS_KEY_ID"

@@ -3,17 +3,20 @@ cluster:
     name: valet-testing
     location: us-central1-a
     project: solo-test-236622
-applications:
-  - path: registry/apps/gloo-enterprise-app.yaml
+flags:
+  - dns
+workflows:
+  - path: registry/workflows/deploy-gloo-with-dns.yaml
     values:
-      Domain: valet-testing-glooui.corp.solo.io
-      Version: 0.20.4
-  - path: registry/apps/smh-app.yaml
+      GlooUiDomain: glooui.testing.valet.corp.solo.io
+      Version: 0.20.8
+      DnsDomain: "*.testing.valet.corp.solo.io"
+      DnsHostedZone: "corp.solo.io."
+  - path: registry/workflows/deploy-smh-with-vs.yaml
     values:
-      Domain: valet-testing-smh.corp.solo.io
-      Version: 0.3.22
-#  - path: registry/apps/istio.yaml
-#  - path: registry/apps/smi-adapter-istio.yaml
-  - path: registry/apps/bookinfo-app.yaml
+      Domain: smh.testing.valet.corp.solo.io
+      Version: 0.3.24
+  - path: registry/workflows/deploy-istio.yaml
+  - path: registry/workflows/deploy-bookinfo.yaml
     values:
-      Domain: valet-testing-bookinfo.corp.solo.io
+      Domain: bookinfo.testing.valet.corp.solo.io

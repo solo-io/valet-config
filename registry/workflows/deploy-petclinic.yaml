@@ -1,0 +1,5 @@
+requiredValues:
+  - Domain
+steps:
+  - install:
+      path: registry/apps/petclinic-app.yaml

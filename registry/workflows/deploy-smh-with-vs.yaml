@@ -1,0 +1,6 @@
+requiredValues:
+  - Domain
+  - Version
+steps:
+  - install:
+      path: registry/apps/smh-app.yaml

@@ -1,4 +1,4 @@
-# This is a wrapper for the resources (virtual services, certificate, and dns entry) that are necessary to
+# This is a wrapper for the resources (virtual services, certificate) that are necessary to
 # configure a simple application in Gloo
 
 name: gloo-app
@@ -8,11 +8,20 @@ requiredValues:
   - VirtualServiceName
   - UpstreamName
   - UpstreamNamespace
+values:
+  Prefix: /
 resources:
-  - dnsEntry:
-      hostedZone: corp.solo.io.
-      service:
-        namespace: gloo-system
-        name: gateway-proxy-v2
+  - template:
+      path: registry/templates/cert.yaml
+    flags:
+      - ssl
   - template:
       path: registry/templates/virtual-service.yaml
+  - patch:
+      path: registry/patches/gloo/virtual-service-ssl.yaml
+      kubeType: VirtualService
+      name: "{{ .VirtualServiceName }}"
+      namespace: "{{ .Namespace }}"
+      patchType: merge
+    flags:
+      - ssl

@@ -1,0 +1,10 @@
+steps:
+  - install:
+      path: registry/apps/bookinfo.yaml
+  - condition:
+      type: ApplicationState
+      name: bookinfo-demo
+      namespace: sm-marketplace
+      jsonpath: '{.spec.installationState.status}'
+      value: INSTALLED
+      timeout: 120s

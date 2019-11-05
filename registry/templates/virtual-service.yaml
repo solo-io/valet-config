@@ -6,10 +6,10 @@ metadata:
 spec:
   virtualHost:
     domains:
-      - {{ .Domain }}
+      - "{{ .Domain }}"
     routes:
       - matcher:
-          prefix: /
+          prefix: {{ .Prefix }}
         routeAction:
           single:
             upstream:

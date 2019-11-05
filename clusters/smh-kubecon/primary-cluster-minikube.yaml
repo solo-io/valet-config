@@ -1,12 +1,11 @@
 cluster:
   minikube: {}
-applications:
-  - path: registry/apps/gloo-enterprise.yaml
+workflows:
+  - path: registry/workflows/deploy-gloo.yaml
     values:
       Version: 0.20.4
-  - path: registry/apps/smh.yaml
+  - path: registry/workflows/deploy-smh.yaml
     values:
       Version: 0.3.19
-  - path: registry/apps/istio.yaml
-  - path: registry/apps/smi-adapter-istio.yaml
-  - path: registry/apps/bookinfo.yaml
+  - path: registry/workflows/deploy-istio.yaml
+  - path: registry/workflows/deploy-bookinfo.yaml

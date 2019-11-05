@@ -1,14 +1,13 @@
-name: gloo-enterprise-ssl-app
+name: gloo-enterprise-app
 requiredValues:
   - Domain
   - Version
 values:
   Namespace: gloo-system
-  UpstreamName: gloo-system-apiserver-ui-8080
-  UpstreamNamespace: gloo-system
-  VirtualServiceName: glooui
 resources:
   - application:
-      path: registry/apps/gloo-enterprise.yaml
-  - application:
       path: registry/apps/gloo-app.yaml
+    values:
+      UpstreamName: gloo-system-apiserver-ui-8080
+      UpstreamNamespace: "key:Namespace"
+      VirtualServiceName: glooui

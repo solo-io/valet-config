@@ -3,12 +3,17 @@ cluster:
     name: glooe-demo-idit
     location: us-central1-a
     project: solo-test-236622
-applications:
-  - path: registry/apps/cert-manager.yaml
-  - path: registry/apps/gloo-enterprise-app.yaml
+flags:
+  - dns
+  - ssl
+workflows:
+  - path: registry/workflows/deploy-cert-manager.yaml
+  - path: registry/workflows/deploy-gloo-with-dns.yaml
     values:
-      Domain: valet-glooui-37b2b8609d.corp.solo.io
       Version: 0.20.4
-  - path: registry/apps/petclinic-app.yaml
+      DnsHostedZone: corp.solo.io.
+      DnsDomain: "*.37b2b8609d.valet.corp.solo.io"
+      GlooUiDomain: glooui.37b2b8609d.valet.corp.solo.io
+  - path: registry/workflows/deploy-petclinic.yaml
     values:
-      Domain: valet-petclinic-37b2b8609d.corp.solo.io
+      Domain: petclinic.37b2b8609d.valet.corp.solo.io

@@ -1,0 +1,7 @@
+spec:
+  sslConfig:
+    secretRef:
+      name: "{{ .Domain }}"
+      namespace: "{{ .Namespace }}"
+    sniDomains:
+      - "{{ .Domain }}"

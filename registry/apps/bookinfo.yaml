@@ -5,10 +5,3 @@ resources:
       labels:
         istio-injection: enabled
   - path: registry/files/bookinfo/appstate.yaml
-  - condition:
-      type: ApplicationState
-      name: bookinfo-demo
-      namespace: sm-marketplace
-      jsonpath: '{.spec.installationState.status}'
-      value: INSTALLED
-      timeout: 120s

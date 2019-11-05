@@ -1,0 +1,3 @@
+steps:
+  - install:
+      path: registry/apps/cert-manager.yaml

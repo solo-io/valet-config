@@ -6,6 +6,7 @@ cluster:
 flags:
   - dns
   - istio-ssl
+  - gloo-app
 steps:
   - workflow:
       path: registry/workflows/deploy-gloo-with-dns.yaml
@@ -15,7 +16,7 @@ steps:
         DnsDomain: "*.testing.valet.corp.solo.io"
         DnsHostedZone: "corp.solo.io."
   - install:
-      path: registry/apps/smh-app.yaml
+      path: registry/apps/smh.yaml
       values:
         Domain: smh.testing.valet.corp.solo.io
         Version: 0.3.24

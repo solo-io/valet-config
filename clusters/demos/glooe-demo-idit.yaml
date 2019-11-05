@@ -6,6 +6,7 @@ cluster:
 flags:
   - dns
   - ssl
+  - gloo-app
 steps:
   - install:
       path: registry/apps/cert-manager.yaml
@@ -17,6 +18,6 @@ steps:
         DnsDomain: "*.37b2b8609d.valet.corp.solo.io"
         GlooUiDomain: glooui.37b2b8609d.valet.corp.solo.io
   - install:
-      path: registry/apps/petclinic-app.yaml
+      path: registry/apps/petclinic.yaml
       values:
         Domain: petclinic.37b2b8609d.valet.corp.solo.io

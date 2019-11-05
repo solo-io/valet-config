@@ -9,6 +9,8 @@ values:
 resources:
   - application:
       path: registry/apps/gloo-app.yaml
+    flags:
+      - gloo-app
   - patch:
       path: registry/patches/istio/bookinfo-upstream-ssl.yaml
       kubeType: upstream

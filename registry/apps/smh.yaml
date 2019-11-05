@@ -17,3 +17,12 @@ resources:
       repoName: sm-marketplace
       set:
         - "namespace.create=true"
+  - application:
+      path: registry/apps/gloo-app.yaml
+    values:
+      VirtualServiceName: smh
+      Namespace: sm-marketplace
+      UpstreamName: sm-marketplace-smm-apiserver-8080
+      UpstreamNamespace: gloo-system
+    flags:
+      - gloo-app

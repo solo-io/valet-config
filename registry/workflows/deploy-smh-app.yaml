@@ -1,0 +1,15 @@
+requiredValues:
+  - ApplicationPath
+  - ApplicationName
+values:
+  InstallTimeout: 120s
+steps:
+  - install:
+      path: "{{ .ApplicationPath }}"
+  - condition:
+      type: ApplicationState
+      name: "{{ .ApplicationName }}"
+      namespace: sm-marketplace
+      jsonpath: '{.spec.installationState.status}'
+      value: INSTALLED
+      timeout: "{{ .InstallTimeout }}"

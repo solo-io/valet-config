@@ -5,18 +5,36 @@ cluster:
     project: solo-test-236622
 flags:
   - dns
-workflows:
-  - path: registry/workflows/deploy-gloo-with-dns.yaml
-    values:
-      GlooUiDomain: glooui.testing.valet.corp.solo.io
-      Version: 0.20.8
-      DnsDomain: "*.testing.valet.corp.solo.io"
-      DnsHostedZone: "corp.solo.io."
-  - path: registry/workflows/deploy-smh-with-vs.yaml
-    values:
-      Domain: smh.testing.valet.corp.solo.io
-      Version: 0.3.24
-  - path: registry/workflows/deploy-istio.yaml
-  - path: registry/workflows/deploy-bookinfo.yaml
-    values:
-      Domain: bookinfo.testing.valet.corp.solo.io
+  - istio-ssl
+steps:
+  - workflow:
+      path: registry/workflows/deploy-gloo-with-dns.yaml
+      values:
+        GlooUiDomain: glooui.testing.valet.corp.solo.io
+        Version: 0.20.8
+        DnsDomain: "*.testing.valet.corp.solo.io"
+        DnsHostedZone: "corp.solo.io."
+  - install:
+      path: registry/apps/smh-app.yaml
+      values:
+        Domain: smh.testing.valet.corp.solo.io
+        Version: 0.3.24
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/istio.yaml
+        ApplicationName: istio-demo
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/smi-adapter-istio.yaml
+        ApplicationName: smi-demo
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/bookinfo.yaml
+        ApplicationName: bookinfo-demo
+  - install:
+      path: registry/apps/bookinfo-app.yaml
+      values:
+        Domain: bookinfo.testing.valet.corp.solo.io

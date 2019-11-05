@@ -6,15 +6,15 @@ requiredValues:
 values:
   Namespace: gloo-system
 steps:
-  - workflow:
-      path: registry/workflows/deploy-gloo.yaml
   - install:
-      path: registry/apps/gloo-enterprise-app.yaml
-    values:
-      UpstreamName: gloo-system-apiserver-ui-8080
-      UpstreamNamespace: "key:Namespace"
-      VirtualServiceName: glooui
-      Domain: "key:GlooUiDomain"
+      path: registry/apps/gloo-enterprise.yaml
+      values:
+        UpstreamName: gloo-system-apiserver-ui-8080
+        UpstreamNamespace: "key:Namespace"
+        VirtualServiceName: glooui
+        Domain: "key:GlooUiDomain"
+      flags:
+        - glooui-app
   - dnsEntry:
       service:
         namespace: gloo-system

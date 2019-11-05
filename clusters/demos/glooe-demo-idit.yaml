@@ -6,14 +6,17 @@ cluster:
 flags:
   - dns
   - ssl
-workflows:
-  - path: registry/workflows/deploy-cert-manager.yaml
-  - path: registry/workflows/deploy-gloo-with-dns.yaml
-    values:
-      Version: 0.20.4
-      DnsHostedZone: corp.solo.io.
-      DnsDomain: "*.37b2b8609d.valet.corp.solo.io"
-      GlooUiDomain: glooui.37b2b8609d.valet.corp.solo.io
-  - path: registry/workflows/deploy-petclinic.yaml
-    values:
-      Domain: petclinic.37b2b8609d.valet.corp.solo.io
+steps:
+  - install:
+      path: registry/apps/cert-manager.yaml
+  - workflow:
+      path: registry/workflows/deploy-gloo-with-dns.yaml
+      values:
+        Version: 0.20.4
+        DnsHostedZone: corp.solo.io.
+        DnsDomain: "*.37b2b8609d.valet.corp.solo.io"
+        GlooUiDomain: glooui.37b2b8609d.valet.corp.solo.io
+  - install:
+      path: registry/apps/petclinic-app.yaml
+      values:
+        Domain: petclinic.37b2b8609d.valet.corp.solo.io

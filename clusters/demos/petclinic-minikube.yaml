@@ -1,9 +1,13 @@
 cluster:
   minikube: {}
-workflows:
-  - path: registry/workflows/deploy-gloo.yaml
-    values:
-      Version: 0.20.4
-  - path: registry/workflows/deploy-petclinic.yaml
-    values:
-      Domain: "*"
+steps:
+  - install:
+      path: registry/apps/gloo-enterprise.yaml
+      values:
+        Version: 0.20.4
+  - install:
+      path: registry/apps/petclinic.yaml
+      values:
+        Domain: "*"
+      flags:
+        - gloo-app

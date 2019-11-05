@@ -16,7 +16,7 @@ resources:
       namespace: "{{ .UpstreamNamespace }}"
       patchType: merge
     flags:
-      - ssl
+      - istio-ssl
   - patch:
       path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
       kubeType: deployment
@@ -24,4 +24,4 @@ resources:
       namespace: gloo-system
       patchType: strategic
     flags:
-      - ssl
+      - istio-ssl

@@ -16,3 +16,11 @@ resources:
         - "gloo.gatewayProxies.gatewayProxyV2.readConfig=true"
       setEnv:
         license_key: LICENSE_KEY
+  - application:
+      path: registry/apps/gloo-app.yaml
+      values:
+        UpstreamName: gloo-system-apiserver-ui-8080
+        UpstreamNamespace: "key:Namespace"
+        VirtualServiceName: glooui
+    flags:
+      - gloo-app

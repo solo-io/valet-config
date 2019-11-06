@@ -1,0 +1,25 @@
+steps:
+  - apply:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - apply:
+      path: registry/files/gloo/regression/path-matching/prefix_vs.yaml
+  - curl:
+      path: /posts/1
+      host: foo
+      responseBody: >
+        {
+          "userId": 1,
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        }
+      statusCode: 200
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+
+cleanupSteps:
+  - delete:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - delete:
+      path: registry/files/gloo/regression/path-matching/prefix_vs.yaml

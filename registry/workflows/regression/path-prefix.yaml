@@ -1,6 +1,11 @@
+#title: Path Matching
+#description: >
+#  This workflow demonstrates path prefix matching on a Gloo virtual service. Go here to install Gloo.
 steps:
   - apply:
       path: registry/files/gloo/regression/static-upstream.yaml
+#    destination: >
+#      First, we
   - apply:
       path: registry/files/gloo/regression/path-matching/prefix_vs.yaml
   - curl:

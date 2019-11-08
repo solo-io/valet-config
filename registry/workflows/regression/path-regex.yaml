@@ -1,0 +1,32 @@
+steps:
+  - apply:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - apply:
+      path: registry/files/gloo/regression/path-matching/regex_vs.yaml
+  - curl:
+      path: /comments
+      host: foo
+      statusCode: 404
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+  - curl:
+      path: /todos
+      host: foo
+      statusCode: 200
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+  - curl:
+      path: /posts
+      host: foo
+      statusCode: 200
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+
+cleanupSteps:
+  - delete:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - delete:
+      path: registry/files/gloo/regression/path-matching/regex_vs.yaml

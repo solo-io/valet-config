@@ -1,0 +1,43 @@
+steps:
+  - apply:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - apply:
+      path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
+  - curl:
+      path: /
+      host: foo
+      statusCode: 200
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+  - curl:
+      path: /posts
+      host: foo
+      statusCode: 404
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+  - delete:
+      path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
+  - apply:
+      path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml
+  - curl:
+      path: /posts
+      host: foo
+      statusCode: 200
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+  - curl:
+      path: /
+      host: foo
+      statusCode: 404
+      service:
+        name: gateway-proxy-v2
+        namespace: gloo-system
+
+cleanupSteps:
+  - delete:
+      path: registry/files/gloo/regression/static-upstream.yaml
+  - delete:
+      path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml

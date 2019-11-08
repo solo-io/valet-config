@@ -1,0 +1,7 @@
+steps:
+  - workflow:
+      path: registry/workflows/regression/path-prefix.yaml
+  - workflow:
+      path: registry/workflows/regression/path-exact.yaml
+  - workflow:
+      path: registry/workflows/regression/path-regex.yaml

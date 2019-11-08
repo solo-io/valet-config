@@ -14,7 +14,7 @@ steps:
         VirtualServiceName: glooui
         Domain: "key:GlooUiDomain"
       flags:
-        - glooui-app
+        - gloo-app
   - dnsEntry:
       service:
         namespace: gloo-system

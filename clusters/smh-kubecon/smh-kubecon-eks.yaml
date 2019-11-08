@@ -1,19 +1,14 @@
 cluster:
-  gke:
-    name: smh-kubecon-linkerd
-    location: us-central1-a
-    project: solo-test-236622
+  eks:
+    name: smh-kubecon-eks
+    region: us-east-2
 flags:
-  - dns
   - gloo-app
 steps:
   - workflow:
       path: registry/workflows/deploy-gloo-with-dns.yaml
       values:
-        GlooUiDomain: glooui.testing.smh-kubecon-linkerd.corp.solo.io
         Version: 0.20.8
-        DnsDomain: "*.testing.smh-kubecon-linkerd.corp.solo.io"
-        DnsHostedZone: "corp.solo.io."
   - install:
       path: registry/apps/smh.yaml
       values:
@@ -33,4 +28,4 @@ steps:
   - install:
       path: registry/apps/bookinfo-app.yaml
       values:
-        Domain: bookinfo.testing.smh-kubecon-linkerd.corp.solo.io
+        Domain: bookinfo.testing.smh-kubecon-eks.corp.solo.io

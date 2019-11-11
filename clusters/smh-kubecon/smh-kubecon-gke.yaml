@@ -1,0 +1,45 @@
+cluster:
+  gke:
+    name: smh-kubecon-gke
+    location: us-central1-a
+    project: solo-test-236622
+    options:
+      initialNodeCount: 2
+flags:
+  - dns
+  - istio-ssl
+  - gloo-app
+steps:
+  - workflow:
+      path: registry/workflows/deploy-gloo-with-dns.yaml
+      values:
+        GlooUiDomain: glooui.testing.smh-kubecon.corp.solo.io
+        Version: 0.20.8
+        DnsDomain: "*.testing.smh-kubecon.corp.solo.io"
+        DnsHostedZone: "corp.solo.io."
+  - install:
+      path: registry/apps/smh.yaml
+      values:
+        Domain: smh.testing.smh-kubecon.corp.solo.io
+        Version: 0.4.4
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/istio.yaml
+        ApplicationName: istio-demo
+  - install:
+      path: registry/apps/istio-dns.yaml
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/smi-adapter-istio.yaml
+        ApplicationName: smi-demo
+  - workflow:
+      path: registry/workflows/deploy-smh-app.yaml
+      values:
+        ApplicationPath: registry/apps/bookinfo.yaml
+        ApplicationName: bookinfo-demo
+  - install:
+      path: registry/apps/bookinfo-app.yaml
+      values:
+        Domain: bookinfo.testing.smh-kubecon.corp.solo.io

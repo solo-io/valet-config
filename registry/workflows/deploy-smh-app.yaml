@@ -2,7 +2,7 @@ requiredValues:
   - ApplicationPath
   - ApplicationName
 values:
-  InstallTimeout: 120s
+  InstallTimeout: 240s
 steps:
   - install:
       path: "{{ .ApplicationPath }}"

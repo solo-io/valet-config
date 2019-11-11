@@ -24,6 +24,53 @@ spec:
                   gateways:
                     enabled: false
                 id: disabled
+              - description: Enable Egress gateway
+                displayName: Egress
+                helmValues: |
+                  gateways:
+                    istio-egressgateway:
+                      enabled: true
+                      env:
+                        # Needed to route traffic via egress gateway if desired.
+                        ISTIO_META_REQUESTED_NETWORK_VIEW: "external"
+                id: egress
+          - displayName: MultiCluster
+            id: multi-cluster-secure
+            optional: true
+            options:
+              - description: Enable multi-cluster support
+                displayName: Multi Cluster
+                helmValues: |
+                  global:
+                    podDNSSearchNamespaces:
+                    - global
+                    - "{{ valueOrDefault .DeploymentMeta.Namespace \"default\" }}.global"
+                    multiCluster:
+                      enabled: true
+                    controlPlaneSecurityEnabled: true
+                    mtls:
+                      enabled: true
+                  security:
+                    selfSigned: false
+                id: enabled
+                resourceDependencies:
+                  - secretDependency:
+                      keys:
+                        - ca-cert.pem
+                        - ca-key.pem
+                        - root-cert.pem
+                        - cert-chain.pem
+                      name: cacerts
+          - displayName: IstioCoreDns
+            id: core-dns
+            optional: true
+            options:
+              - description: Enable istio core-dns
+                displayName: CoreDns
+                helmValues: |
+                  istiocoredns:
+                    enabled: true
+                id: enabled
           - displayName: Security
             id: security
             optional: true
@@ -92,8 +139,10 @@ spec:
     installNamespace: istio-system
     layerOptions:
       gateway:
-        layerOptionId: disabled
-      security:
-        layerOptionId: strict
+        layerOptionId: egress
+      multi-cluster-secure:
+        layerOptionId: enabled
+      core-dns:
+        layerOptionId: enabled
     version: "1.4"
   registryName: hub-meshes

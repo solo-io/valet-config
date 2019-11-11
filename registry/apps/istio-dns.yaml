@@ -1,0 +1,6 @@
+name: istio
+resources:
+  - template:
+      path: registry/files/istio/istio-dns.yaml
+      values:
+        IstioDns: "cmd:kubectl get svc -n istio-system istiocoredns -o jsonpath={.spec.clusterIP}"

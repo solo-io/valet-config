@@ -11,6 +11,17 @@ resources:
       entries:
         token:
           envVar: GITHUB_TOKEN
+  - secret:
+      name: aws-cred
+      entries:
+        credentials:
+          file: $HOME/.aws/credentials
+  - secret:
+      name: remote-kube-config
+      type: solo.io/kubeconfig
+      entries:
+        smh-kubecon-eks:
+          file: $HOME/.kube/eksctl/clusters/smh-kubecon-eks
   - helmChart:
       repoUrl: "https://storage.googleapis.com/sm-marketplace-helm/"
       chartName: sm-marketplace

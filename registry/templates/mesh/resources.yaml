@@ -1,0 +1,50 @@
+apiVersion: zephyr.solo.io/v1
+kind: MeshIngress
+metadata:
+  name: linkerd-gloo-ingress
+  namespace: sm-marketplace
+spec:
+  gloo:
+    namespace: gloo-system
+    serviceName: gateway-proxy-v2
+    port: mesh-bridge
+
+---
+
+apiVersion: zephyr.solo.io/v1
+kind: Mesh
+metadata:
+  name: linkerd
+  namespace: sm-marketplace
+spec:
+  discoveryMetadata:
+    cluster: smh-kubecon-eks
+  entryPoint:
+    resource:
+      name: linkerd-gloo-ingress
+      namespace: sm-marketplace
+
+---
+
+apiVersion: zephyr.solo.io/v1
+kind: MeshBridge
+metadata:
+  name: one
+  namespace: bookinfo
+spec:
+  target:
+    meshService:
+      mesh:
+        name: linkerd-linkerd-smh-kubecon-eks
+        namespace: sm-marketplace
+      upstream:
+        name: bookinfo-details-9080
+        namespace: gloo-system
+  source:
+    meshService:
+      mesh:
+        name: istio-istio-system
+        namespace: sm-marketplace
+      upstream:
+        name: bookinfo-productpage-v1-9080
+        namespace: gloo-system

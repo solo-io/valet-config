@@ -1,3 +1,17 @@
 name: istio
 resources:
+  - namespace:
+      name: istio-system
+  - secret:
+      name: cacerts
+      namespace: istio-system
+      entries:
+        ca-cert.pem:
+          file: registry/secrets/istio/ca-cert.pem
+        ca-key.pem:
+          file: registry/secrets/istio/ca-key.pem
+        cert-chain.pem:
+          file: registry/secrets/istio/cert-chain.pem
+        root-cert.pem:
+          file: registry/secrets/istio/root-cert.pem
   - path: registry/files/istio/appstate.yaml

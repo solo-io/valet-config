@@ -1,0 +1,6 @@
+name: linkerd
+resources:
+  - namespace:
+      name: linkerd
+  - template: 
+      path: registry/files/linkerd/appstate.yaml

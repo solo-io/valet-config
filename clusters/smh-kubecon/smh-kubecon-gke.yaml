@@ -1,6 +1,6 @@
 cluster:
   gke:
-    name: smh-kubecon
+    name: smh-kubecon-gke
     location: us-central1-a
     project: solo-test-236622
     options:
@@ -21,7 +21,7 @@ steps:
       path: registry/apps/smh.yaml
       values:
         Domain: smh.testing.smh-kubecon.corp.solo.io
-        Version: 0.3.24
+        Version: 0.4.4
   - workflow:
       path: registry/workflows/deploy-smh-app.yaml
       values:

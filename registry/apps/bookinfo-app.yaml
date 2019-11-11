@@ -19,11 +19,3 @@ resources:
       patchType: merge
     flags:
       - istio-ssl
-  - patch:
-      path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
-      kubeType: deployment
-      name: gateway-proxy-v2
-      namespace: gloo-system
-      patchType: strategic
-    flags:
-      - istio-ssl

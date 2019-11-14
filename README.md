@@ -1,5 +1,7 @@
 # valet-config
 
+**The config in this repo is compatible with valet 0.4.0+.**
+
 This repo contains a bunch of applications, workflows, and cluster definitions that Valet can run / ensure. 
 
 ## Setup 

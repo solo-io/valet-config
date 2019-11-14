@@ -1,4 +1,4 @@
-name: istio
+name: istio-dns
 resources:
   - template:
       path: registry/files/istio/istio-dns.yaml

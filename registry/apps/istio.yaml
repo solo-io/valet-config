@@ -14,4 +14,5 @@ resources:
           file: registry/secrets/istio/cert-chain.pem
         root-cert.pem:
           file: registry/secrets/istio/root-cert.pem
-  - path: registry/files/istio/appstate.yaml
+  - manifest:
+      path: registry/files/istio/appstate.yaml

@@ -1,8 +1,10 @@
 steps:
   - apply:
-      path: registry/files/gloo/regression/static-upstream.yaml
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - apply:
-      path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
   - curl:
       path: /
       host: foo
@@ -18,9 +20,11 @@ steps:
         name: gateway-proxy-v2
         namespace: gloo-system
   - delete:
-      path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/exact_vs_1.yaml
   - apply:
-      path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml
   - curl:
       path: /posts
       host: foo
@@ -38,6 +42,8 @@ steps:
 
 cleanupSteps:
   - delete:
-      path: registry/files/gloo/regression/static-upstream.yaml
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - delete:
-      path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/exact_vs_2.yaml

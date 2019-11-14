@@ -1,0 +1,11 @@
+steps:
+  - install:
+      path: registry/apps/gloo-app.yaml
+  - patch:
+      path: registry/patches/gloo/virtual-service-ssl.yaml
+      kubeType: VirtualService
+      name: "{{ .VirtualServiceName }}"
+      namespace: "{{ .Namespace }}"
+      patchType: merge
+    flags:
+      - ssl

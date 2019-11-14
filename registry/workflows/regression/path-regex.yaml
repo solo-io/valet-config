@@ -1,8 +1,10 @@
 steps:
   - apply:
-      path: registry/files/gloo/regression/static-upstream.yaml
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - apply:
-      path: registry/files/gloo/regression/path-matching/regex_vs.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/regex_vs.yaml
   - curl:
       path: /comments
       host: foo
@@ -27,6 +29,8 @@ steps:
 
 cleanupSteps:
   - delete:
-      path: registry/files/gloo/regression/static-upstream.yaml
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - delete:
-      path: registry/files/gloo/regression/path-matching/regex_vs.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/regex_vs.yaml

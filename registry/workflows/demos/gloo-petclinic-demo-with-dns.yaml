@@ -1,11 +1,7 @@
-cluster:
-  gke:
-    name: glooe-demo-idit
-    location: us-central1-a
-    project: solo-test-236622
-flags:
-  - dns
-  - gloo-app
+requiredValues:
+  - Subdomain
+values:
+  HostedZone: valet.solo.io.
 steps:
   - install:
       path: registry/apps/gloo-enterprise.yaml
@@ -14,13 +10,12 @@ steps:
   - workflow:
       path: registry/workflows/setup-gloo-proxy-dns.yaml
       values:
-        Domain: "*.37b2b8609d.valet.corp.solo.io"
-        HostedZone: "corp.solo.io."
+        Domain: "template:*.{{ .Subdomain }}"
   - workflow:
       path: registry/workflows/setup-glooui-as-gloo-app.yaml
       values:
-        Domain: glooui.37b2b8609d.valet.corp.solo.io
+        Domain: "template:glooui.{{ .Subdomain }}"
   - install:
       path: registry/apps/petclinic.yaml
       values:
-        Domain: petclinic.37b2b8609d.valet.corp.solo.io
+        Domain: "template:petclinic.{{ .Subdomain }}"

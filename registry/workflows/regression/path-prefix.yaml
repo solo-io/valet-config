@@ -1,13 +1,12 @@
-#title: Path Matching
-#description: >
-#  This workflow demonstrates path prefix matching on a Gloo virtual service. Go here to install Gloo.
+#title: Prefix Matching
+#description: Testing prefix matching and docs gen.
 steps:
   - apply:
-      path: registry/files/gloo/regression/static-upstream.yaml
-#    destination: >
-#      First, we
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - apply:
-      path: registry/files/gloo/regression/path-matching/prefix_vs.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/prefix_vs.yaml
   - curl:
       path: /posts/1
       host: foo
@@ -25,6 +24,8 @@ steps:
 
 cleanupSteps:
   - delete:
-      path: registry/files/gloo/regression/static-upstream.yaml
+      manifest:
+        path: registry/files/gloo/regression/static-upstream.yaml
   - delete:
-      path: registry/files/gloo/regression/path-matching/prefix_vs.yaml
+      manifest:
+        path: registry/files/gloo/regression/path-matching/prefix_vs.yaml

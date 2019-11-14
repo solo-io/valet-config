@@ -1,3 +1,11 @@
+#title: Path Matching
+#description: |
+#  There are three options to do HTTP path matching. You can specify only one of the following three options within any given
+#  route matcher spec:
+#
+#  * [`prefix`](#prefix) - match if the beginning path of request path matches specified path.
+#  * [`exact`](#exact) - match if request path matches specified path exactly.
+#  * [`regex`](#regex) - match if the specified regular expression matches.
 steps:
   - workflow:
       path: registry/workflows/regression/path-prefix.yaml

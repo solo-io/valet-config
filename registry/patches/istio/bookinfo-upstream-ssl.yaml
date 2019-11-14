@@ -3,5 +3,5 @@ spec:
     sslConfig:
       sslFiles:
         rootCa: /etc/certs/root-cert.pem
-        tlsCert: /etc/certs/cert-chain.pem
-        tlsKey: /etc/certs/key.pem
+        tlsCert: /etc/certs/ca-cert.pem
+        tlsKey: /etc/certs/ca-key.pem

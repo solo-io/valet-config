@@ -1,0 +1,8 @@
+steps:
+  - workflow:
+      path: registry/workflows/setup-gloo-app.yaml
+    values:
+      VirtualServiceName: smh
+      Namespace: sm-marketplace
+      UpstreamName: sm-marketplace-smm-apiserver-8080
+      UpstreamNamespace: gloo-system

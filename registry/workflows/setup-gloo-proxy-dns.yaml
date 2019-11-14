@@ -1,0 +1,11 @@
+requiredValues:
+  - HostedZone
+  - Domain
+values:
+  Namespace: gloo-system
+steps:
+  - dnsEntry:
+      service:
+        name: gateway-proxy-v2
+
+

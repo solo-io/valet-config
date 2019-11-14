@@ -3,6 +3,7 @@ requiredValues:
   - Version
 values:
   Namespace: sm-marketplace
+  AwsCredentials:
 resources:
   - namespace:
       name: sm-marketplace
@@ -15,25 +16,18 @@ resources:
       name: aws-cred
       entries:
         credentials:
-          file: $HOME/.aws/credentials
+          file: $HOME/.aws/valet-credentials
   - secret:
       name: remote-kube-config
       type: solo.io/kubeconfig
       entries:
-        smh-kubecon-eks:
-          file: $HOME/.kube/eksctl/clusters/smh-kubecon-eks
+        valet-testing:
+          file: $HOME/.kube/eksctl/clusters/valet-testing
+    flags:
+      - eks
   - helmChart:
       repoUrl: "https://storage.googleapis.com/sm-marketplace-helm/"
       chartName: sm-marketplace
       repoName: sm-marketplace
       set:
         - "namespace.create=true"
-  - application:
-      path: registry/apps/gloo-app.yaml
-    values:
-      VirtualServiceName: smh
-      Namespace: sm-marketplace
-      UpstreamName: sm-marketplace-smm-apiserver-8080
-      UpstreamNamespace: gloo-system
-    flags:
-      - gloo-app

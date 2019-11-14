@@ -15,6 +15,8 @@ steps:
         ApplicationPath: registry/apps/istio.yaml
         ApplicationName: istio-demo
   - workflow:
+      path: registry/workflows/connect-gloo-to-istio.yaml
+  - workflow:
       path: registry/workflows/deploy-smh-app.yaml
       values:
         ApplicationPath: registry/apps/smi-adapter-istio.yaml

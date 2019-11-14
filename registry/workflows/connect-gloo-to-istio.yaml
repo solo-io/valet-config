@@ -1,0 +1,27 @@
+steps:
+  - apply:
+      secret:
+        name: istio.default
+        namespace: gloo-system
+        type: istio.io/key-and-cert
+        entries:
+          ca-cert.pem:
+            file: registry/secrets/istio/ca-cert.pem
+          ca-key.pem:
+            file: registry/secrets/istio/ca-key.pem
+          cert-chain.pem:
+            file: registry/secrets/istio/cert-chain.pem
+          root-cert.pem:
+            file: registry/secrets/istio/root-cert.pem
+  - patch:
+      path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
+      kubeType: deployment
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic
+  - patch:
+      path: registry/patches/istio/gloo-service.yaml
+      kubeType: service
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic

@@ -1,3 +1,4 @@
 name: smi-adapter-istio
 resources:
-  - path: registry/files/istio/smi-appstate.yaml
+  - manifest:
+      path: registry/files/istio/smi-appstate.yaml

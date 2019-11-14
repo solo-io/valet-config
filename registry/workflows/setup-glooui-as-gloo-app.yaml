@@ -1,0 +1,8 @@
+steps:
+  - workflow:
+      path: registry/workflows/setup-gloo-app.yaml
+      values:
+        UpstreamName: "template:{{ .Namespace }}-apiserver-ui-8080"
+        UpstreamNamespace: "key:Namespace"
+        VirtualServiceName: glooui
+        Namespace: gloo-system

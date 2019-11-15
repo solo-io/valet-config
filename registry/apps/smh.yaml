@@ -2,12 +2,12 @@
 name: service-mesh-hub
 requiredValues:
   - Version
-  - ClusterName
   - AwsCredentialsFile
 values:
   Namespace: sm-marketplace
   MeshProjectsEnabled: true
   ApiServerDisabled: false
+  OperatorDisabled: false
 resources:
   - namespace:
       name: sm-marketplace
@@ -27,12 +27,14 @@ resources:
       entries:
         "{{ .ClusterName }}":
           file: $HOME/.kube/eksctl/clusters/{{ .ClusterName }}
+    flags:
+      - remote
   - helmChart:
       repoUrl: "https://storage.googleapis.com/sm-marketplace-helm/"
       chartName: sm-marketplace
       repoName: sm-marketplace
-      values:
+      set:
+        namespace.create": "true"
         "meshProjects.enabled": "template:{{ .MeshProjectsEnabled }}"
         "apiserver.disabled": "template:{{ .ApiServerDisabled }}"
-      set:
-        - "namespace.create=true"
+        "operator.disabled": "template:{{ .OperatorDisabled }}"

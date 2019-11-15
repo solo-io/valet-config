@@ -9,8 +9,8 @@ resources:
       chartName: gloo
       repoName: gloo
       set:
-        - "namespace.create=true"
-        - "gatewayProxies.gatewayProxyV2.readConfig=true"
+        "namespace.create": "true"
+        "gatewayProxies.gatewayProxyV2.readConfig": "true"
   - template:
       path: registry/templates/tcp-gateway.yaml
       values:

@@ -1,0 +1,26 @@
+cluster:
+  gke:
+    name: smh-readonly
+    location: us-central1-a
+    project: solo-corp
+    options:
+      initialNodeCount: 2
+values:
+  ClusterName: smh-readonly
+  AwsCredentialsFile: $HOME/.aws/credentials
+steps:
+  # - workflow:
+  #     path: registry/workflows/deploy-gloo-with-dns.yaml
+  #     values:
+  #       GlooUiDomain: glooui.testing.smh-kubecon.corp.solo.io
+  #       Version: 0.20.8
+  #       DnsDomain: "*.testing.smh-kubecon.corp.solo.io"
+  #       DnsHostedZone: "corp.solo.io."
+  - install:
+      path: registry/apps/smh.yaml
+      values:
+        Domain: smh.testing.smh-kubecon.corp.solo.io
+        AwsCredentialsFile: $HOME/.aws/credentials
+        Version: 0.4.12
+        MeshProjectsEnabled: false
+        OperatorDisabled: true

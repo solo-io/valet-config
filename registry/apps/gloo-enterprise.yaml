@@ -9,11 +9,10 @@ resources:
       chartName: gloo-ee
       repoName: gloo-ee
       set:
-        - "gloo.namespace.create=true"
+        "gloo.namespace.create": "true"
+        "gloo.gatewayProxies.gatewayProxyV2.readConfig": "true"
+        "prometheus.enabled": "false"
         # NOTE: currently, grafana / prometheus are disabled because reapplying causes an error
-        - "prometheus.enabled=false"
-        - "grafana.defaultInstallationEnabled=false"
-        - "gloo.gatewayProxies.gatewayProxyV2.readConfig=true"
-      setEnv:
-        license_key: LICENSE_KEY
+        "grafana.defaultInstallationEnabled": "false"
+        "license_key": "env:LICENSE_KEY"
       

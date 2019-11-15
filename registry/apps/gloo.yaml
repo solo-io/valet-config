@@ -1,8 +1,6 @@
 name: gloo
 requiredValues:
   - Version
-values:
-  Namespace: gloo-system
 resources:
   - helmChart:
       repoUrl: "https://storage.googleapis.com/solo-public-helm/"
@@ -10,13 +8,3 @@ resources:
       repoName: gloo
       set:
         "namespace.create": "true"
-        "gatewayProxies.gatewayProxyV2.readConfig": "true"
-  - template:
-      path: registry/templates/tcp-gateway.yaml
-      values:
-        GatewayName: tcp-gateway
-        GatewayNamespace: "key:Namespace"
-        UpstreamName: bookinfo-details-9080
-        UpstreamNamespace: "key:Namespace"
-        BindPort: "8000"
-      

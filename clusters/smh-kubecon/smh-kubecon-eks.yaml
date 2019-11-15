@@ -5,6 +5,7 @@ flags:
 values:
   ClusterName: smh-kubecon-eks
   AwsCredentialsFile: $HOME/.aws/credentials
+  GlooNamespace: gloo-system
 cluster:
   eks: {}
 steps:
@@ -12,6 +13,11 @@ steps:
       path: registry/apps/gloo.yaml
       values:
         Version: 0.21.1
+        Namespace: "key:GlooNamespace"
+  - workflow:
+      path: registry/workflows/setup-gloo-tcp-gateway.yaml
+      values:
+        Namespace: "key:GlooNamespace"
   - workflow:
       path: registry/workflows/connect-gloo-to-linkerd.yaml
   - install:

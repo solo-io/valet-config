@@ -12,7 +12,7 @@ flags:
   - remote
 steps:
   - install:
-      path: registry/apps/glo0.yaml
+      path: registry/apps/gloo.yaml
       values:
         Version: 0.21.2
   - workflow:

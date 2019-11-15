@@ -4,7 +4,5 @@ resources:
       name: bookinfo
       labels:
         istio-injection: enabled
-      annotations:
-        linkerd.io/inject: enabled
   - manifest:
       path: registry/files/bookinfo/appstate.yaml

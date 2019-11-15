@@ -2,8 +2,6 @@ name: bookinfo
 resources:
   - namespace:
       name: bookinfo
-      labels:
-        istio-injection: enabled
       annotations:
         linkerd.io/inject: enabled
   - manifest:

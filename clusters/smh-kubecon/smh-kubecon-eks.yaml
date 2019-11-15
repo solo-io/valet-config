@@ -32,8 +32,5 @@ steps:
         ApplicationPath: registry/apps/linkerd.yaml
         ApplicationName: linkerd-demo
         ApplicationNamespace: linkerd
-  - workflow:
-      path: registry/workflows/install-smh-app.yaml
-      values:
-        ApplicationPath: registry/apps/bookinfo.yaml
-        ApplicationName: bookinfo-demo
+  - install:
+      path: registry/apps/bookinfo-eks.yaml

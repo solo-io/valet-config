@@ -1,6 +1,5 @@
 cluster:
   gke:
-    name: smh-kubecon-gke
     location: us-central1-a
     project: solo-test-236622
     options:
@@ -10,11 +9,17 @@ flags:
   - istio-ssl
   - gloo-app
   - remote
+values:
+  AwsClusterName: smh-kubecon-eks
+  ClusterName: smh-kubecon-gke
+  GlooNamespace: gloo-system
+  AwsCredentialsFile: $HOME/.aws/credentials
 steps:
   - install:
       path: registry/apps/gloo.yaml
       values:
         Version: 0.21.2
+        Namespace: "key:GlooNamespace"
   - workflow:
       path: registry/workflows/setup-gloo-proxy-dns.yaml
       values:

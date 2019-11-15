@@ -25,8 +25,8 @@ resources:
       name: remote-kube-config
       type: solo.io/kubeconfig
       entries:
-        "{{ .ClusterName }}":
-          file: $HOME/.kube/eksctl/clusters/{{ .ClusterName }}
+        "{{ .AwsClusterName }}":
+          file: $HOME/.kube/eksctl/clusters/{{ .AwsClusterName }}
     flags:
       - remote
   - helmChart:

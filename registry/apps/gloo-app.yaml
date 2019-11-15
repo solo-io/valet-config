@@ -1,6 +1,5 @@
 # This is a wrapper for the resources (virtual services, certificate) that are necessary to
 # configure a simple application in Gloo
-
 name: gloo-app
 requiredValues:
   - Domain

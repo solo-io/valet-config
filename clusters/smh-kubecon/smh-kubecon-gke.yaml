@@ -21,7 +21,8 @@ steps:
       path: registry/apps/smh.yaml
       values:
         Domain: smh.testing.smh-kubecon.corp.solo.io
-        Version: 0.4.4
+        AwsCredentialsFile: $HOME/.aws/credentials
+        Version: 0.4.12
   - workflow:
       path: registry/workflows/deploy-smh-app.yaml
       values:

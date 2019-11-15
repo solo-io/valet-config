@@ -3,16 +3,15 @@ steps:
       secret:
         name: istio.default
         namespace: gloo-system
-        type: istio.io/key-and-cert
         entries:
           ca-cert.pem:
-            file: registry/secrets/istio/ca-cert.pem
+            file: registry/secrets/linkerd/ca-cert.pem
           ca-key.pem:
-            file: registry/secrets/istio/ca-key.pem
+            file: registry/secrets/linkerd/ca-key.pem
           cert-chain.pem:
-            file: registry/secrets/istio/cert-chain.pem
+            file: registry/secrets/linkerd/cert-chain.pem
           root-cert.pem:
-            file: registry/secrets/istio/root-cert.pem
+            file: registry/secrets/linkerd/root-cert.pem
   - patch:
       path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
       kubeType: deployment

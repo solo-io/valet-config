@@ -1,9 +1,13 @@
+# valet version 0.4.1
 name: service-mesh-hub
 requiredValues:
   - Version
+  - ClusterName
+  - AwsCredentialsFile
 values:
   Namespace: sm-marketplace
-  AwsCredentials:
+  MeshProjectsEnabled: true
+  ApiServerDisabled: false
 resources:
   - namespace:
       name: sm-marketplace
@@ -16,18 +20,19 @@ resources:
       name: aws-cred
       entries:
         credentials:
-          file: $HOME/.aws/valet-credentials
+          file: "{{ .AwsCredentialsFile }}"
   - secret:
       name: remote-kube-config
       type: solo.io/kubeconfig
       entries:
-        valet-testing:
-          file: $HOME/.kube/eksctl/clusters/valet-testing
-    flags:
-      - eks
+        "{{ .ClusterName }}":
+          file: $HOME/.kube/eksctl/clusters/{{ .ClusterName }}
   - helmChart:
       repoUrl: "https://storage.googleapis.com/sm-marketplace-helm/"
       chartName: sm-marketplace
       repoName: sm-marketplace
+      values:
+        "meshProjects.enabled": "template:{{ .MeshProjectsEnabled }}"
+        "apiserver.disabled": "template:{{ .ApiServerDisabled }}"
       set:
         - "namespace.create=true"

@@ -5,7 +5,6 @@ cluster:
     options:
       initialNodeCount: 2
 flags:
-  - dns
   - istio-ssl
   - gloo-app
   - remote
@@ -20,23 +19,10 @@ steps:
       values:
         Version: 0.21.2
         Namespace: "key:GlooNamespace"
-  - workflow:
-      path: registry/workflows/setup-gloo-proxy-dns.yaml
-      values:
-        Domain: "*.testing.smh-kubecon.corp.solo.io"
-        HostedZone: "corp.solo.io."
-  - workflow:
-      path: registry/workflows/setup-glooui-as-gloo-app.yaml
-      values:
-        Domain: glooui.testing.smh-kubecon.corp.solo.io
   - install:
       path: registry/apps/smh.yaml
       values:
         Version: 0.4.19
-  - workflow:
-      path: registry/workflows/setup-smh-as-gloo-app.yaml
-      values:
-        Domain: smh.testing.smh-kubecon.corp.solo.io
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:
@@ -56,9 +42,5 @@ steps:
         ApplicationPath: registry/apps/bookinfo.yaml
         ApplicationName: bookinfo-demo
         InstallTimeout: 240s
-  - workflow:
-      path: registry/workflows/setup-bookinfo-as-gloo-app.yaml
-      values:
-        Domain: bookinfo.testing.smh-kubecon.corp.solo.io
   - install:
       path: registry/apps/istio-dns.yaml

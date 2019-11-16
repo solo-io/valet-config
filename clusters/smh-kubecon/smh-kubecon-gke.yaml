@@ -32,7 +32,7 @@ steps:
   - install:
       path: registry/apps/smh.yaml
       values:
-        Version: 0.4.18
+        Version: 0.4.19
   - workflow:
       path: registry/workflows/setup-smh-as-gloo-app.yaml
       values:

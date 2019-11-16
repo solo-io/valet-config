@@ -8,3 +8,4 @@ resources:
       repoName: gloo
       set:
         "namespace.create": "true"
+        "discovery.enabled": "false"

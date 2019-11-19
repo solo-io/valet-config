@@ -22,7 +22,7 @@ steps:
   - install:
       path: registry/apps/smh.yaml
       values:
-        Version: 0.4.19
+        Version: 0.4.26
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:

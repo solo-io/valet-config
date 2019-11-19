@@ -21,6 +21,6 @@ steps:
       values:
         Domain: smh.testing.smh-kubecon.corp.solo.io
         AwsCredentialsFile: $HOME/.aws/credentials
-        Version: 0.4.12
+        Version: 0.4.25
         MeshProjectsEnabled: false
         OperatorDisabled: true

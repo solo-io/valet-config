@@ -1,5 +1,7 @@
 cluster:
-  minikube: {}
+  minikube: 
+    vmDriver: hyperkit
+    cpus: 6
 flags:
   - dns
   - istio-ssl
@@ -7,7 +9,6 @@ flags:
   - remote
 values:
   AwsClusterName: smh-kubecon-eks
-  ClusterName: smh-kubecon-gke
   GlooNamespace: gloo-system
   AwsCredentialsFile: $HOME/.aws/credentials
 steps:
@@ -19,7 +20,7 @@ steps:
   - install:
       path: registry/apps/smh.yaml
       values:
-        Version: 0.4.19
+        Version: 0.4.24
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:

@@ -1,14 +1,12 @@
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
 metadata:
-  name: reviews
+  name: details
   namespace: bookinfo
 spec:
-  service: reviews
+  service: details
   backends:
-    - service: reviews
-      weight: 0
-    - service: reviews-v2
+    - service: details
       weight: 250
-    - service: reviews-v3
+    - service: details.bookinfo.global
       weight: 250

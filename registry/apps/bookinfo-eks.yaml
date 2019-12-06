@@ -1,4 +1,4 @@
-name: bookinfo
+name: bookinfo-eks
 resources:
   - namespace:
       name: bookinfo

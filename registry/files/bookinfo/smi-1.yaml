@@ -26,4 +26,4 @@ specs:
 sources:
   - kind: ServiceAccount
     name: bookinfo-productpage
-    namespace: bookinfo
+

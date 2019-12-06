@@ -10,7 +10,8 @@ steps:
   - install:
       path: registry/apps/gloo-enterprise.yaml
       values:
-        Version: 0.18.31
+        # Version: 0.18.31
+        Version: 0.21.0
   - workflow:
       path: registry/workflows/setup-gloo-proxy-dns.yaml
       values:

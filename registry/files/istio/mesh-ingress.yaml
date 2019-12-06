@@ -1,0 +1,10 @@
+apiVersion: zephyr.solo.io/v1
+kind: MeshIngress
+metadata:
+  name: linkerd-gloo-ingress
+  namespace: sm-marketplace
+spec:
+  gloo:
+    namespace: gloo-system
+    serviceName: gateway-proxy-v2
+    port: mesh-bridge

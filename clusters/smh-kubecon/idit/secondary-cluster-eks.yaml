@@ -1,5 +1,5 @@
 values:
-  ClusterName: valet-testing
+  ClusterName: idit-demo-eks
   AwsCredentialsFile: $HOME/.aws/valet-credentials
   GlooNamespace: gloo-system
 flags:

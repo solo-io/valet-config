@@ -1,0 +1,22 @@
+apiVersion: zephyr.solo.io/v1
+kind: MeshBridge
+metadata:
+  name: details
+  namespace: bookinfo
+spec:
+  target:
+    meshService:
+      mesh:
+        name: linkerd-linkerd-valet-testing
+        namespace: sm-marketplace
+      upstream:
+        name: bookinfo-details-9080
+        namespace: gloo-system
+  source:
+    meshService:
+      mesh:
+        name: istio-istio-system
+        namespace: sm-marketplace
+      upstream:
+        name: bookinfo-productpage-9080
+        namespace: sm-marketplace

@@ -3,6 +3,7 @@ requiredValues:
   - Version
 values:
   Namespace: gloo-system
+  DiscoveryEnabled: true
 resources:
   - helmChart:
       repoUrl: "https://storage.googleapis.com/gloo-ee-helm/"
@@ -14,5 +15,6 @@ resources:
         "prometheus.enabled": "false"
         # NOTE: currently, grafana / prometheus are disabled because reapplying causes an error
         "grafana.defaultInstallationEnabled": "false"
+        "gloo.discovery.enabled": "key:DiscoveryEnabled"
         "license_key": "env:LICENSE_KEY"
       

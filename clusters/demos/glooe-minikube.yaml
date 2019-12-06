@@ -5,9 +5,3 @@ steps:
       path: registry/apps/gloo-enterprise.yaml
       values:
         Version: 0.21.1
-  - install:
-      path: registry/apps/petclinic.yaml
-      values:
-        Domain: "*"
-      flags:
-        - gloo-app

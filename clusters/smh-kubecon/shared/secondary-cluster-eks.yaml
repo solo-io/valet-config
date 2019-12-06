@@ -1,12 +1,13 @@
 values:
-  ClusterName: valet-testing
+  ClusterName: shared-demo-eks
   AwsCredentialsFile: $HOME/.aws/valet-credentials
   GlooNamespace: gloo-system
 flags:
   - istio-ssl
   - eks
 cluster:
-  eks: {}
+  eks:
+    region: us-west-2
 steps:
   - install:
       path: registry/apps/gloo.yaml

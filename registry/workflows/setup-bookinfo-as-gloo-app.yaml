@@ -4,7 +4,7 @@ values:
   VirtualServiceName: bookinfo
   Namespace: bookinfo
   UpstreamName: bookinfo-productpage-9080
-  UpstreamNamespace: gloo-system
+  UpstreamNamespace: sm-marketplace
 steps:
   - workflow:
       path: registry/workflows/setup-gloo-app.yaml

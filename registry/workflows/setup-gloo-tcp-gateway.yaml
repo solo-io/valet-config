@@ -1,0 +1,22 @@
+steps:
+  - apply:
+      template:
+        path: registry/templates/tcp-gateway.yaml
+        values:
+          GatewayName: tcp-gateway
+          GatewayNamespace: "key:Namespace"
+          UpstreamName: bookinfo-details-9080
+          UpstreamNamespace: "key:Namespace"
+          BindPort: "8000"
+  - patch:
+      path: registry/patches/istio/gateway-proxy-deployment-ssl.yaml
+      kubeType: deployment
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic
+  - patch:
+      path: registry/patches/gloo/gloo-service.yaml
+      kubeType: service
+      name: gateway-proxy-v2
+      namespace: gloo-system
+      patchType: strategic

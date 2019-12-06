@@ -1,16 +1,14 @@
 cluster:
-  gke:
-    location: us-central1-a
-    project: solo-test-236622
-    options:
-      initialNodeCount: 2
+  minikube: 
+    vmDriver: hyperkit
+    cpus: 6
 flags:
+  - dns
   - istio-ssl
   - gloo-app
   - remote
 values:
   AwsClusterName: smh-kubecon-eks
-  ClusterName: smh-kubecon-gke
   GlooNamespace: gloo-system
   AwsCredentialsFile: $HOME/.aws/credentials
 steps:
@@ -22,15 +20,13 @@ steps:
   - install:
       path: registry/apps/smh.yaml
       values:
-        Version: 0.4.26
+        Version: 0.4.24
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:
         ApplicationPath: registry/apps/istio.yaml
         ApplicationName: istio-demo
         InstallTimeout: 300s
-  - workflow:
-      path: registry/workflows/connect-gloo-to-istio.yaml
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:
@@ -42,5 +38,3 @@ steps:
         ApplicationPath: registry/apps/bookinfo.yaml
         ApplicationName: bookinfo-demo
         InstallTimeout: 240s
-  - install:
-      path: registry/apps/istio-dns.yaml

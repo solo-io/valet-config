@@ -1,26 +1,35 @@
-cluster:
-  eks:
-    name: valet-testing
-    region: us-east-2
+values:
+  ClusterName: valet-testing
+  AwsCredentialsFile: $HOME/.aws/valet-credentials
+  GlooNamespace: gloo-system
 flags:
   - istio-ssl
+  - eks
+cluster:
+  eks: {}
 steps:
   - install:
-      path: registry/apps/gloo-enterprise.yaml
+      path: registry/apps/gloo.yaml
       values:
-        Version: 0.20.8
+        Version: 0.21.1
+        Namespace: "key:GlooNamespace"
+  - workflow:
+      path: registry/workflows/setup-gloo-tcp-gateway.yaml
+      values:
+        Namespace: "key:GlooNamespace"
+  - workflow:
+      path: registry/workflows/connect-gloo-to-linkerd.yaml
   - install:
       path: registry/apps/smh.yaml
       values:
-        Version: 0.3.24
+        Version: 0.4.12
+        MeshProjectsEnabled: false
+        ApiServerDisabled: true
   - workflow:
       path: registry/workflows/install-smh-app.yaml
       values:
         ApplicationPath: registry/apps/linkerd.yaml
         ApplicationName: linkerd-demo
         ApplicationNamespace: linkerd
-  - workflow:
-      path: registry/workflows/install-smh-app.yaml
-      values:
-        ApplicationPath: registry/apps/bookinfo.yaml
-        ApplicationName: bookinfo-demo
+  - install:
+      path: registry/apps/bookinfo-eks.yaml

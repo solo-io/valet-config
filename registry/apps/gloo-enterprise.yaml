@@ -3,17 +3,18 @@ requiredValues:
   - Version
 values:
   Namespace: gloo-system
+  DiscoveryEnabled: true
 resources:
   - helmChart:
       repoUrl: "https://storage.googleapis.com/gloo-ee-helm/"
       chartName: gloo-ee
       repoName: gloo-ee
       set:
-        - "gloo.namespace.create=true"
+        "gloo.namespace.create": "true"
+        "gloo.gatewayProxies.gatewayProxyV2.readConfig": "true"
+        "prometheus.enabled": "false"
         # NOTE: currently, grafana / prometheus are disabled because reapplying causes an error
-        - "prometheus.enabled=false"
-        - "grafana.defaultInstallationEnabled=false"
-        - "gloo.gatewayProxies.gatewayProxyV2.readConfig=true"
-      setEnv:
-        license_key: LICENSE_KEY
+        "grafana.defaultInstallationEnabled": "false"
+        "gloo.discovery.enabled": "key:DiscoveryEnabled"
+        "license_key": "env:LICENSE_KEY"
       

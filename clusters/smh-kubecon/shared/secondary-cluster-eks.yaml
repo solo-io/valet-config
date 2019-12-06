@@ -1,13 +1,13 @@
-# valet version 0.4.1
+values:
+  ClusterName: shared-demo-eks
+  AwsCredentialsFile: $HOME/.aws/valet-credentials
+  GlooNamespace: gloo-system
 flags:
   - istio-ssl
   - eks
-values:
-  ClusterName: smh-kubecon-eks
-  AwsCredentialsFile: $HOME/.aws/credentials
-  GlooNamespace: gloo-system
 cluster:
-  eks: {}
+  eks:
+    region: us-west-2
 steps:
   - install:
       path: registry/apps/gloo.yaml

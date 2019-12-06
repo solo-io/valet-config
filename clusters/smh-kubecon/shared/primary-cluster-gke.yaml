@@ -1,7 +1,7 @@
 cluster:
   gke:
-    name: valet-testing
-    location: us-central1-a
+    name: shared-demo-gke
+    location: us-west2-b
     project: solo-test-236622
 flags:
   - dns
@@ -17,23 +17,23 @@ steps:
   - workflow:
       path: registry/workflows/setup-gloo-proxy-dns.yaml
       values:
-        Domain: "*.testing.valet.corp.solo.io"
+        Domain: "*.3b310dc618d4.valet.corp.solo.io"
         HostedZone: "corp.solo.io."
   - install:
       path: registry/apps/smh.yaml
       values:
         Version: 0.4.26
         AwsCredentialsFile: $HOME/.aws/valet-credentials
-        AwsClusterName: valet-testing
+        AwsClusterName: shared-demo-eks
   - workflow:
       path: registry/workflows/setup-glooui-as-gloo-app.yaml
       values:
-        Domain: glooui.testing.valet.corp.solo.io
+        Domain: glooui.3b310dc618d4.valet.corp.solo.io
         UpstreamNamespace: sm-marketplace
   - workflow:
       path: registry/workflows/setup-smh-as-gloo-app.yaml
       values:
-        Domain: smh.testing.valet.corp.solo.io
+        Domain: smh.3b310dc618d4.valet.corp.solo.io
         UpstreamNamespace: sm-marketplace
   - workflow:
       path: registry/workflows/install-smh-app.yaml
@@ -57,7 +57,7 @@ steps:
   - workflow:
       path: registry/workflows/setup-bookinfo-as-gloo-app.yaml
       values:
-        Domain: bookinfo.testing.valet.corp.solo.io
+        Domain: bookinfo.3b310dc618d4.valet.corp.solo.io
         UpstreamNamespace: sm-marketplace
   - install:
       path: registry/apps/istio-dns.yaml

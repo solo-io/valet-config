@@ -1,15 +1,11 @@
-name: gloo-enterprise
+name: gloo
 requiredValues:
   - Version
-values:
-  Namespace: gloo-system
 resources:
   - helmChart:
       repoUrl: "https://storage.googleapis.com/solo-public-helm/"
       chartName: gloo
       repoName: gloo
       set:
-        - "namespace.create=true"
-      setEnv:
-        license_key: LICENSE_KEY
-      
+        "namespace.create": "true"
+        "discovery.enabled": "false"

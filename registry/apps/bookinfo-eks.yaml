@@ -1,0 +1,8 @@
+name: bookinfo-eks
+resources:
+  - namespace:
+      name: bookinfo
+      annotations:
+        linkerd.io/inject: enabled
+  - manifest:
+      path: registry/files/bookinfo/eks-details-deployment.yaml

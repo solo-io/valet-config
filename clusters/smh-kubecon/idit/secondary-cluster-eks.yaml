@@ -1,11 +1,10 @@
-# valet version 0.4.1
+values:
+  ClusterName: idit-demo-eks
+  AwsCredentialsFile: $HOME/.aws/valet-credentials
+  GlooNamespace: gloo-system
 flags:
   - istio-ssl
   - eks
-values:
-  ClusterName: smh-kubecon-eks
-  AwsCredentialsFile: $HOME/.aws/credentials
-  GlooNamespace: gloo-system
 cluster:
   eks: {}
 steps:

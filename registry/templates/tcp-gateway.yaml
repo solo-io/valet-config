@@ -1,0 +1,22 @@
+apiVersion: gateway.solo.io.v2/v2
+kind: Gateway
+metadata:
+  name: {{ .GatewayName }}
+  namespace: {{ .GatewayNamespace }}
+spec:
+  bindAddress: '::'
+  bindPort: {{ .BindPort }}
+  tcpGateway:
+    destinations:
+    - name: one
+      sslConfig:
+        sslFiles:
+          tlsCert: /etc/certs/ca-cert.pem
+          tlsKey: /etc/certs/ca-key.pem
+          rootCa: /etc/certs/root-cert.pem
+      destination:
+        single:
+          upstream:
+            name: {{ .UpstreamName }}
+            namespace: {{ .UpstreamNamespace }}
+  useProxyProto: false

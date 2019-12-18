@@ -1,5 +1,7 @@
 cluster:
   minikube: {}
+flags:
+  - gloo-app
 steps:
   - install:
       path: registry/apps/gloo-enterprise.yaml
@@ -9,5 +11,3 @@ steps:
       path: registry/apps/petclinic.yaml
       values:
         Domain: "*"
-      flags:
-        - gloo-app

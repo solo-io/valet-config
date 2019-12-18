@@ -1,0 +1,10 @@
+cluster:
+  gke:
+    name: glooe-testing-1-x
+    location: us-central1-a
+    project: solo-test-236622
+steps:
+  - install:
+      path: registry/apps/petclinic.yaml
+      values:
+        Domain: petclinic.37b2b8609d.valet.corp.solo.io

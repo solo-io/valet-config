@@ -4,9 +4,8 @@ metadata:
   name: aws
   namespace: gloo-system
 spec:
-  upstreamSpec:
-    aws:
-      region: us-east-1
-      secretRef:
-        name: aws-creds
-        namespace: gloo-system
+  aws:
+    region: us-east-1
+    secretRef:
+      name: aws-creds
+      namespace: gloo-system
